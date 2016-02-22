@@ -103,8 +103,6 @@ var readUrl = function() {
     n = from(val, 35);
     $('#marcher-pos-100').val(n);
 	
-	alert(val.length);
-	
 	if(val.length > 37) {
 		n = from(val, 37);
 		$('#fighter-pre-10').val(n);
