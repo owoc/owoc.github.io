@@ -250,6 +250,8 @@ $(function() {
 		var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
 	  }
 	  
+	  alert(field);
+	  
       fun(field);
       sliderDown = setInterval(function() {
         fun(field);
