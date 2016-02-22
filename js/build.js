@@ -27,6 +27,11 @@ var readVals = function() {
   _.each(vocs, function(v) {
     url += readInput('#' + v + '-pos-100');
   });
+
+  _.each(vocs, function(v) {
+    url += readInput('#' + v + '-pre-10');
+  });
+  
   return url;
 };
 
@@ -95,6 +100,22 @@ var readUrl = function() {
     $('#assassin-pos-100').val(n);
     n = from(val, 35);
     $('#marcher-pos-100').val(n);
+	
+	alert(val.length);
+	
+	if(val.length > 37) {
+		n = from(val, 37);
+		$('#fighter-pre-10').val(n);
+		n = from(val, 39);
+		$('#fighter-pre-10').val(n);
+		n = from(val, 41);
+		$('#fighter-pre-10').val(n);
+	} else {
+		if(start === 'f') $('#fighter-pre-10').val(9);
+		if(start === 's') $('#strider-pre-10').val(9);
+		if(start === 'm') $('#mage-pre-10').val(9);
+	}
+	
     return true;
   } else return false;
 };
