@@ -29,7 +29,9 @@ var readVals = function() {
   });
 
   _.each(vocs, function(v) {
-    url += readInput('#' + v + '-pre-10');
+	if(v === 'fighter' || v === 'strider' || v === 'mage') {
+		url += readInput('#' + v + '-pre-10');
+	}
   });
   
   return url;
