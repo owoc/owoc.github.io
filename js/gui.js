@@ -240,7 +240,7 @@ $(function() {
       setUrl();
     });
 
-    $('#' + v + '-pre-100-up, #' + v + '-pre-100-down, #' + v + '-pos-100-up, #' + v + '-pos-100-down').mousedown(function() {
+    $('#' + v + '-pre-10-up, #' + v + '-pre-10-down, #' + v + '-pre-100-up, #' + v + '-pre-100-down, #' + v + '-pos-100-up, #' + v + '-pos-100-down').mousedown(function() {
       var id = $(this).prop('id');
       var fun = /-up/.exec(id) ? incField : decField;
       var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
