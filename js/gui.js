@@ -251,7 +251,7 @@ $(function() {
 		var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
 	  }
 	  
-	  alert("1 " + field);
+	  alert(id + " /// " + field);
 	  
       fun(field);
       sliderDown = setInterval(function() {
