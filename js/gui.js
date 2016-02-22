@@ -165,6 +165,11 @@ var readLevels = function() {
   });
 };
 
+var filterPre10 = function(i) {
+  var v = parseInt(i, 10) || 0;
+  return Math.min(v, 9);
+};
+
 var filterPre100 = function(i) {
   var v = parseInt(i, 10) || 0;
   return Math.min(v, 90);
@@ -224,6 +229,19 @@ $(function() {
     e.preventDefault();
     toggleVersion();
   });
+
+  _.each(vocs, function(v) {
+    $('#' + v + '-pre-10').keyup(function(e) {
+      if(initChoosen) {
+        var lv = filterPre10($('#' + v + '-pre-10').val());
+        $('#' + v + '-pre-10').val(lv);
+        readLevels();
+      } else {
+        $('#' + v + '-pre-10').val('');
+      }
+    });
+  });
+
 
   _.each(vocs, function(v) {
     $('#' + v + '-pre-100').keyup(function(e) {
