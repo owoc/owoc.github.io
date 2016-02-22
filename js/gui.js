@@ -105,6 +105,15 @@ var onLevel = function(char, vocation, to, levels) {
   return nchar;
 };
 
+var verifyPre10 = function(current, lv, voc) {
+  var total = current + lv;
+  if(total > 9) {
+    $('#' + voc + '-pre-10').val(9 - current);
+    return 9 - current;
+  }
+  return lv;
+};
+
 var verifyPre100 = function(current, lv, voc) {
   var total = current + lv;
   if(total > 90) {
@@ -133,9 +142,16 @@ var readLevels = function() {
     mattack: character.mattack,
     mdefense: character.mdefense
   };
+  var totalPre10 = 0;
   var totalPre100 = 0;
   var totalPos100 = 0;
   _.each(vocs, function(v) {
+    var lv = parseInt($('#' + v + '-pre-10').val(), 10) || 0;
+    lv = verifyPre10(totalPre100, lv, v);
+    totalPre10 += lv;
+    char = onLevel(char, v, 'to10', lv);
+
+
     var lv = parseInt($('#' + v + '-pre-100').val(), 10) || 0;
     lv = verifyPre100(totalPre100, lv, v);
     totalPre100 += lv;
@@ -249,8 +265,6 @@ $(function() {
 	  } else {
 		var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
 	  }
-	  
-	  alert(id + " /// " + field);
 	  
       fun(field);
       sliderDown = setInterval(function() {
