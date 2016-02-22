@@ -88,7 +88,7 @@ var resetBuild = function() {
 
 var onInit = function(vocation) {
   character = planner.init(vocation);
-  character = planner.levelUp(character, vocation, 'to10', 9);
+  character = planner.levelUp(character, vocation, 'to10', 0);
   setChar(character);
   initChoosen = true;
   readLevels();
