@@ -246,11 +246,9 @@ $(function() {
 	  
 	  if(/pre-10$/.exec(id)) {
 		var field = '#' + v + '-pre-10';
-	  else {
+	  } else {
 		var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
 	  }
-	  
-	  alert(field);
 	  
       fun(field);
       sliderDown = setInterval(function() {
