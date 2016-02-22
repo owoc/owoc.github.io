@@ -167,7 +167,9 @@ $(function() {
   $('#mage-btn').popover({trigger: 'hover', html: true, content: initBuilder(planner.mage)});
 
   _.each(vocs, function(v) {
-    $('#badge-' + v + '-pre-10').popover({trigger: 'hover', html: true, content: popoverBuilder(planner[v], 'to10')});
+	if(v === 'fighter' || v === 'strider' || v === 'mage') {
+		$('#badge-' + v + '-pre-10').popover({trigger: 'hover', html: true, content: popoverBuilder(planner[v], 'to10')});
+	}
     $('#badge-' + v + '-pre-100').popover({trigger: 'hover', html: true, content: popoverBuilder(planner[v], 'to100')});
     $('#badge-' + v + '-pos-100').popover({trigger: 'hover', html: true, content: popoverBuilder(planner[v], 'to200')});
   });
