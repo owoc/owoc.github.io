@@ -107,9 +107,9 @@ var readUrl = function() {
 		n = from(val, 37);
 		$('#fighter-pre-10').val(n);
 		n = from(val, 39);
-		$('#fighter-pre-10').val(n);
+		$('#strider-pre-10').val(n);
 		n = from(val, 41);
-		$('#fighter-pre-10').val(n);
+		$('#mage-pre-10').val(n);
 	} else {
 		if(start === 'f') $('#fighter-pre-10').val(9);
 		if(start === 's') $('#strider-pre-10').val(9);
