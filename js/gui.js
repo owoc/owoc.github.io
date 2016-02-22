@@ -79,6 +79,7 @@ var resetBuild = function() {
   initChoosen = false;
   $('#fighter-btn, #strider-btn, #mage-btn').removeClass('active');
   _.each(vocs, function(v) {
+    $('#' + v + '-pre-10').val('');
     $('#' + v + '-pre-100').val('');
     $('#' + v + '-pos-100').val('');
   });
