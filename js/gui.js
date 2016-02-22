@@ -147,11 +147,12 @@ var readLevels = function() {
   var totalPre100 = 0;
   var totalPos100 = 0;
   _.each(vocs, function(v) {
-    var lv = parseInt($('#' + v + '-pre-10').val(), 10) || 0;
-    lv = verifyPre10(totalPre100, lv, v);
-    totalPre10 += lv;
-    char = onLevel(char, v, 'to10', lv);
-
+	if(v === 'fighter' || v === 'strider' || v === 'mage') {
+		var lv = parseInt($('#' + v + '-pre-10').val(), 10) || 0;
+		lv = verifyPre10(totalPre10, lv, v);
+		totalPre10 += lv;
+		char = onLevel(char, v, 'to10', lv);
+	}
 
     var lv = parseInt($('#' + v + '-pre-100').val(), 10) || 0;
     lv = verifyPre100(totalPre100, lv, v);
@@ -241,7 +242,6 @@ $(function() {
       }
     });
   });
-
 
   _.each(vocs, function(v) {
     $('#' + v + '-pre-100').keyup(function(e) {
