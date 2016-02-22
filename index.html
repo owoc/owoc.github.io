@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dragon's Dogma Stat Planner</title>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/build.js"></script>
+  <script src="js/gui.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 id="DDversion">Dragon's Dogma: Dark Arisen <small>Stat Planner</small></h1>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Character</div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <table class="table table-condensed">
+              <tr>
+                <td><strong>Level</strong></td>
+                <td id="level">0</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td><strong>HP</strong></td>
+                <td id="hp">0</td>
+                <td><strong>ST</strong></td>
+                <td id="st">0</td>
+              </tr>
+              <tr>
+                <td><strong>Attack</strong></td>
+                <td id="attack">0</td>
+                <td><strong>Magick</strong></td>
+                <td id="mattack">0</td>
+              </tr>
+              <tr>
+                <td><strong>Defense</strong></td>
+                <td id="defense">0</td>
+                <td><strong>Magick Defense</strong></td>
+                <td id="mdefense">0</td>
+              </tr>
+            </table>
+          </div>
+          <div class="btn-group-vertical">
+            <button type="button" class="btn btn-primary" id="copy-btn">Build link</button>
+            <button type="button" class="btn btn-default" id="reset-btn">Reset build</button>
+            <button type="button" class="btn btn-default" id="toggle-btn">Toggle DD / DD:DA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="init-vocation" class="col-sm-2 control-label">Initial class</label>
+            <div class="col-sm-10">
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary" id="fighter-btn"
+                        data-toggle="popover" data-placement="bottom" title="Initial Stats">Fighter</button>
+                <button type="button" class="btn btn-primary" id="strider-btn"
+                        data-toggle="tooltip" data-placement="bottom" title="Initial Stats">Strider</button>
+                <button type="button" class="btn btn-primary" id="mage-btn"
+                        data-toggle="tooltip" data-placement="bottom" title="Initial Stats">Mage</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Levels from 10 to 100 (max. 90)</div>
+            <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Fighter <span class="badge" id="badge-fighter-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="fighter-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="fighter-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="fighter-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Strider <span class="badge" id="badge-strider-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strider-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="strider-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="strider-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Mage <span class="badge" id="badge-mage-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mage-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="mage-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="mage-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Warrior <span class="badge" id="badge-warrior-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="warrior-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="warrior-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="warrior-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Ranger <span class="badge" id="badge-ranger-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="ranger-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="ranger-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="ranger-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Sorcerer <span class="badge" id="badge-sorcerer-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="sorcerer-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="sorcerer-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="sorcerer-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Mystic Knight <span class="badge" id="badge-mknight-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mknight-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="mknight-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="mknight-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Assassin <span class="badge" id="badge-assassin-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="assassin-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="assassin-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="assassin-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Magick Archer <span class="badge" id="badge-marcher-pre-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="marcher-pre-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="marcher-pre-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="marcher-pre-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Levels from 101 to 200 (max. 100)</div>
+            <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Fighter <span class="badge" id="badge-fighter-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="fighter-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="fighter-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="fighter-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Strider <span class="badge" id="badge-strider-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="strider-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="strider-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="strider-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Mage <span class="badge" id="badge-mage-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mage-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="mage-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="mage-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Warrior <span class="badge" id="badge-warrior-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="warrior-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="warrior-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="warrior-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Ranger <span class="badge" id="badge-ranger-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="ranger-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="ranger-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="ranger-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Sorcerer <span class="badge" id="badge-sorcerer-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="sorcerer-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="sorcerer-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="sorcerer-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Mystic Knight <span class="badge" id="badge-mknight-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mknight-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="mknight-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="mknight-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Assassin <span class="badge" id="badge-assassin-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="assassin-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="assassin-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="assassin-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="init-vocation" class="col-sm-4 control-label">Magick Archer <span class="badge" id="badge-marcher-pos-100" data-toggle="popover"
+                    data-placement="right" title="On&nbsp;level&nbsp;up">?</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" id="marcher-pos-100" placeholder="0">
+                  </div>
+                  <div class="col-sm-1">
+                    <span id="marcher-pos-100-up" class="glyphicon glyphicon-chevron-up"></span>
+                    <span id="marcher-pos-100-down" class="glyphicon glyphicon-chevron-down"></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
