@@ -244,8 +244,7 @@ $(function() {
       var id = $(this).prop('id');
       var fun = /-up/.exec(id) ? incField : decField;
 	  
-	  //if(/pre-10$/.exec(id)) {
-	  if(id.endsWith('pre-10')) {
+	  if(/pre-10-/.exec(id)) {
 		var field = '#' + v + '-pre-10';
 	  } else {
 		var field = '#' + v + '-' + (/pre-/.exec(id) ? 'pre' : 'pos') + '-100';
